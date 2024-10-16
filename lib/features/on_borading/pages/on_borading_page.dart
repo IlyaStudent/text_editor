@@ -54,12 +54,10 @@ class OnBoradingPage extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 8),
                 child: SizedBox(
                   width: double.infinity,
-                  child: FilledButton(
+                  child: CustomFilledButton(
+                    text: context.localization.createAnAccount,
                     onPressed: () => context.router.push(
                       const RegistrationRoute(),
-                    ),
-                    child: Text(
-                      context.localization.createAnAccount,
                     ),
                   ),
                 ),

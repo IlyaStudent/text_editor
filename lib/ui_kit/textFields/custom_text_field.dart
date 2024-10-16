@@ -4,8 +4,11 @@ class CustomTextField extends StatefulWidget {
   final String? labelText;
   final String? hintText;
   final IconData? prefixIcon;
+  final ValueChanged<String>? onChanged;
   final bool obscureText;
   final bool hideable;
+  final String? errorText;
+
   const CustomTextField({
     super.key,
     this.labelText,
@@ -13,6 +16,8 @@ class CustomTextField extends StatefulWidget {
     this.obscureText = false,
     this.hideable = false,
     this.hintText,
+    this.onChanged,
+    this.errorText,
   });
 
   @override
@@ -31,8 +36,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: widget.onChanged,
       obscureText: isObscure,
       decoration: InputDecoration(
+        helperText: "",
+        errorText: widget.errorText,
         labelText: widget.labelText,
         hintText: widget.hintText,
         prefixIcon: Icon(widget.prefixIcon),

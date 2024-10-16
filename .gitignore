@@ -34,6 +34,7 @@ lib/generated/
 *.env
 *.gr.dart
 *.g.dart
+*.freezed.dart
 
 # Symbolication related
 app.*.symbols

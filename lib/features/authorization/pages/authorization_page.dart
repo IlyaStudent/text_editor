@@ -6,11 +6,30 @@ class AuthorizationPage extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return this;
+    return BlocProvider(
+      create: (context) => AuthorizationBloc(),
+      child: this,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    final state = context.watch<AuthorizationBloc>().state;
+    bool isLoading = false;
+    AuthorizationErrorEntity authorizationErrorEntity =
+        const AuthorizationErrorEntity();
+
+    state.when(checkingData: (AuthorizationDTO authorizationDTO,
+        AuthorizationErrorDTO authorizationErrorDTO) {
+      authorizationErrorEntity = authorizationErrorDTO;
+    }, loading: () {
+      isLoading = true;
+    }, authorized: () {
+      context.router.replaceAll([
+        const HomeRoute(),
+      ]);
+    });
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -25,42 +44,10 @@ class AuthorizationPage extends StatelessWidget implements AutoRouteWrapper {
                 fontWeight: FontWeight.w700,
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                top: context.deviceHeight * 0.1,
-                bottom: 16,
-              ),
-              child: CustomTextField(
-                labelText: context.localization.email,
-                prefixIcon: Icons.email,
-                hintText: context.localization.enterYoutEmail,
-              ),
-            ),
-            CustomTextField(
-              labelText: context.localization.password,
-              prefixIcon: Icons.lock,
-              hideable: true,
-              hintText: context.localization.enterYourPassword,
-              obscureText: true,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              child: SizedBox(
-                width: double.infinity,
-                child: FilledButton(
-                  onPressed: () {},
-                  child: Text(
-                    context.localization.signIn,
-                  ),
-                ),
-              ),
-            ),
-            TextButton(
-              onPressed: () => context.router.replace(
-                const RegistrationRoute(),
-              ),
-              child: Text(context.localization.signUp),
-            )
+            AuthorizationFormWidget(
+                authorizationErrorEntity: authorizationErrorEntity,
+                isDisabled: !authorizationErrorEntity.isValid,
+                isLoading: isLoading)
           ],
         ),
       ),

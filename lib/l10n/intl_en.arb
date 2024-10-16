@@ -11,5 +11,11 @@
   "confirmPassword": "Confirm password",
   "confirmYourPassword": "Confirm your password",
   "iAlreadyHaveAnAccount": "I already have an account",
-  "createAnAccount": "Create an account"
+  "createAnAccount": "Create an account",
+  "passwordsMustBeTheSame": "Passwords must be the same",
+  "passwordMustBe625Symbols": "Password must be 6-25 symbols",
+  "incorrectEmail": "Incorrect email",
+  "thisEmailAlreadyTaken": "This email already taken",
+  "invalidDataOrEmailIsAlreadyTaken": "Invalid data or email is already taken",
+  "invalidData": "Invalid data"
 }
