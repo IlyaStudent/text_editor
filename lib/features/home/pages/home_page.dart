@@ -8,11 +8,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: CustomFilledButton(
-          text: context.localization.settingsPage,
-          onPressed: () => context.router.push(
-            const SettingsRoute(),
-          ),
+        child: Text(
+          context.localization.home,
         ),
       ),
     );

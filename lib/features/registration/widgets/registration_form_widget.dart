@@ -102,7 +102,6 @@ class RegistrationFormWidget extends StatelessWidget {
         ),
         CustomTextButton(
             text: context.localization.signIn,
-            isDisabled: isDisabled,
             isLoading: isLoading,
             onPressed: () => context.router.replace(
                   const AuthorizationRoute(),

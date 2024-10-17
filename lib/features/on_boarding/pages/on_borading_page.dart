@@ -22,7 +22,7 @@ class OnBoradingPage extends StatelessWidget implements AutoRouteWrapper {
         loading = true;
       },
       loaded: (bool isRegistered) {
-        if (isRegistered) context.router.replaceAll([const HomeRoute()]);
+        if (isRegistered) context.router.replaceAll([const NavBarRoute()]);
         loading = false;
       },
     );

@@ -7,7 +7,9 @@ class RegistrationPage extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
-      create: (context) => RegistrationBloc(),
+      create: (context) => RegistrationBloc(
+        autentithicationRepository: instance(),
+      ),
       child: this,
     );
   }
@@ -30,7 +32,7 @@ class RegistrationPage extends StatelessWidget implements AutoRouteWrapper {
         isLoading = true;
       },
       registered: () => context.router.replaceAll(
-        [const HomeRoute()],
+        [const NavBarRoute()],
       ),
     );
 

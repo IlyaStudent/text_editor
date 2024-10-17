@@ -7,7 +7,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:text_editor/code_kit/code_kit.dart';
 import 'package:text_editor/root/navigation/app_router.dart';
 import 'package:text_editor/ui_kit/ui_kit.dart';
-import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 //screens
@@ -23,11 +22,9 @@ part 'bloc/registration_bloc/registration_state.dart';
 
 //entities
 part 'models/registration_error_entity.dart';
-part 'models/registration_entity.dart';
 
 // dto
 part 'models/dto/registration_error_dto.dart';
-part 'models/dto/registration_dto.dart';
 
 // generated
 part 'registration.freezed.dart';

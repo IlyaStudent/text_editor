@@ -25,11 +25,6 @@ class SettingsPage extends StatelessWidget implements AutoRouteWrapper {
     );
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          context.localization.settingsPage,
-        ),
-      ),
       body: Center(
         child: loading
             ? const CircularProgressIndicator()

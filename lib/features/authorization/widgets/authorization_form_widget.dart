@@ -78,7 +78,6 @@ class AuthorizationFormWidget extends StatelessWidget {
           ),
         ),
         CustomTextButton(
-          isDisabled: isDisabled,
           isLoading: isLoading,
           text: context.localization.signUp,
           onPressed: () => context.router.replace(

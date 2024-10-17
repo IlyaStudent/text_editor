@@ -19,5 +19,7 @@
   "invalidDataOrEmailIsAlreadyTaken": "Invalid data or email is already taken",
   "invalidData": "Invalid data",
   "signOut": "Sign out",
-  "settingsPage": "Settings Page"
+  "settingsPage": "Settings Page",
+  "home": "Home",
+  "settings": "Settings"
 }

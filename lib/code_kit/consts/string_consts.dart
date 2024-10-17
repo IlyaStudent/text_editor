@@ -15,9 +15,12 @@ class StringConsts {
   static const String appName = "TextEditor";
 
   // route path
-  static const String onBoardingRoute = "/onBoarding";
+  static const String onBoardingRoute = "/";
   static const String authorizationRoute = "/auth";
   static const String registrationRoute = "/reg";
+  static const String navBarPath = "/navBar";
+  static const String homePath = "home";
+  static const String settingsPath = "settings";
 
   // textfield names
   static const String email = "email";

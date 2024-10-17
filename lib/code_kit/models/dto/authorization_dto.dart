@@ -1,4 +1,4 @@
-part of '../../authorization.dart';
+part of '../../code_kit.dart';
 
 @freezed
 class AuthorizationDTO extends AuthorizationEnity with _$AuthorizationDTO {

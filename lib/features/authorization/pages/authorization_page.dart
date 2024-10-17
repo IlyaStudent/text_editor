@@ -7,7 +7,9 @@ class AuthorizationPage extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
-      create: (context) => AuthorizationBloc(),
+      create: (context) => AuthorizationBloc(
+        autentithicationRepository: instance(),
+      ),
       child: this,
     );
   }
@@ -26,7 +28,7 @@ class AuthorizationPage extends StatelessWidget implements AutoRouteWrapper {
       isLoading = true;
     }, authorized: () {
       context.router.replaceAll([
-        const HomeRoute(),
+        const NavBarRoute(),
       ]);
     });
 

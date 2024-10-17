@@ -1,4 +1,4 @@
-part of '../../registration.dart';
+part of '../../code_kit.dart';
 
 @freezed
 class RegistrationDTO extends RegistrationEntity with _$RegistrationDTO {

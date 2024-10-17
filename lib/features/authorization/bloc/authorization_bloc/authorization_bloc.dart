@@ -1,7 +1,10 @@
 part of '../../authorization.dart';
 
 class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
-  AuthorizationBloc() : super(const _CheckingData()) {
+  final AutentithicationRepository autentithicationRepository;
+  AuthorizationBloc({
+    required this.autentithicationRepository,
+  }) : super(const _CheckingData()) {
     on<_AuthorizeEvent>(_onAuthorizeEvent);
     on<_ChangeDataEvent>(_onChangeDataEvent);
   }
@@ -17,10 +20,8 @@ class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
       emit(
         const AuthorizationState.loading(),
       );
-      await supabase.auth.signInWithPassword(
-        password:
-            currentState.authorizationDTO.password ?? StringConsts.emptyString,
-        email: currentState.authorizationDTO.email,
+      await autentithicationRepository.signIn(
+        authorizationEntity: currentState.authorizationDTO,
       );
       emit(
         const AuthorizationState.authorized(),

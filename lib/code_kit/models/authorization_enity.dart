@@ -1,4 +1,4 @@
-part of '../authorization.dart';
+part of '../code_kit.dart';
 
 class AuthorizationEnity {
   final String? email;

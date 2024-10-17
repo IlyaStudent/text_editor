@@ -15,11 +15,9 @@ part 'pages/authorization_page.dart';
 part 'widgets/authorization_form_widget.dart';
 
 // entities
-part 'models/authorization_enity.dart';
 part 'models/authorization_error_entity.dart';
 
 // dto
-part 'models/dto/authorization_dto.dart';
 part 'models/dto/authorization_error_dto.dart';
 
 // bloc

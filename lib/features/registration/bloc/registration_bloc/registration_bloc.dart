@@ -1,10 +1,14 @@
 part of '../../registration.dart';
 
 class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
-  RegistrationBloc() : super(const _CheckingData()) {
+  RegistrationBloc({
+    required this.autentithicationRepository,
+  }) : super(const _CheckingData()) {
     on<_RegisterEvent>(_onRegisterEvent);
     on<_ChangeDataEvent>(_onChangeDataEvent);
   }
+
+  final AutentithicationRepository autentithicationRepository;
 
   Future<void> _onRegisterEvent(
     _RegisterEvent event,

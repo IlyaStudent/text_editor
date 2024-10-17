@@ -1,4 +1,4 @@
-part of '../registration.dart';
+part of '../code_kit.dart';
 
 class RegistrationEntity {
   final String? email;
