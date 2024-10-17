@@ -1,8 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:text_editor/features/authorization/authorization.dart';
 import 'package:text_editor/features/home/home.dart';
-import 'package:text_editor/features/on_borading/on_borading.dart';
+import 'package:text_editor/features/on_boarding/on_boarding.dart';
 import 'package:text_editor/features/registration/registration.dart';
+import 'package:text_editor/features/settings/settings.dart';
 
 part 'app_router.gr.dart';
 
@@ -22,6 +23,9 @@ class AppRouter extends _$AppRouter {
         ),
         AutoRoute(
           page: HomeRoute.page,
-        )
+        ),
+        AutoRoute(
+          page: SettingsRoute.page,
+        ),
       ];
 }

@@ -17,5 +17,7 @@
   "incorrectEmail": "Incorrect email",
   "thisEmailAlreadyTaken": "This email already taken",
   "invalidDataOrEmailIsAlreadyTaken": "Invalid data or email is already taken",
-  "invalidData": "Invalid data"
+  "invalidData": "Invalid data",
+  "signOut": "Sign out",
+  "settingsPage": "Settings Page"
 }

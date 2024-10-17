@@ -14,7 +14,16 @@ class RegistrationFormWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        Text(
+          context.localization.signIn,
+          style: context.textTheme.displaySmall?.copyWith(
+            color: context.colorScheme.primary,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
         Padding(
           padding: EdgeInsets.only(
             top: context.deviceHeight * 0.1,

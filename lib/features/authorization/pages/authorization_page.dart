@@ -33,22 +33,10 @@ class AuthorizationPage extends StatelessWidget implements AutoRouteWrapper {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              context.localization.signIn,
-              style: context.textTheme.displaySmall?.copyWith(
-                color: context.colorScheme.primary,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            AuthorizationFormWidget(
-                authorizationErrorEntity: authorizationErrorEntity,
-                isDisabled: !authorizationErrorEntity.isValid,
-                isLoading: isLoading)
-          ],
+        child: AuthorizationFormWidget(
+          authorizationErrorEntity: authorizationErrorEntity,
+          isDisabled: !authorizationErrorEntity.isValid,
+          isLoading: isLoading,
         ),
       ),
     );
