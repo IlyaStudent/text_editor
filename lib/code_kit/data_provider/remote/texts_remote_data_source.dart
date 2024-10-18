@@ -1,4 +1,4 @@
-part of '../code_kit.dart';
+part of '../../code_kit.dart';
 
 abstract class TextsRemoteDataSource {
   Future<List<TextDTO>> getAllTexts({required String userId});

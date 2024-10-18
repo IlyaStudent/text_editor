@@ -13,7 +13,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(
       const HomeState.loading(),
     );
-    List<TextEntity> texts = await textsRepository.getAllTexts();
+    List<TextEntity> texts = await textsRepository.getAllRemoteTexts();
     emit(
       HomeState.loaded(
         texts: texts,

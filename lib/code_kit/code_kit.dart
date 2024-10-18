@@ -6,6 +6,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:text_editor/features/authorization/authorization.dart';
 import 'package:text_editor/features/registration/registration.dart';
@@ -30,9 +31,16 @@ part 'models/authorization_enity.dart';
 part 'models/registration_entity.dart';
 part 'models/text_entity.dart';
 
-// data provider
-part 'data_provider/texts_remote_data_source.dart';
-part 'data_provider/texts_remote_data_source_impl.dart';
+// data provider - remote
+part 'data_provider/remote/texts_remote_data_source.dart';
+part 'data_provider/remote/texts_remote_data_source_impl.dart';
+
+// data provider - local tables
+// part 'data_provider/local/tables/text_local_model.dart';
+
+// data provider - local data sources
+part 'data_provider/local/texts_local_data_source.dart';
+part 'data_provider/local/texts_local_data_souce_impl.dart';
 
 // repositories
 part 'repositories/autentithication_repository.dart';

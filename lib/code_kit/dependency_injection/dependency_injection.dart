@@ -6,18 +6,22 @@ final supabase = Supabase.instance.client;
 Future<void> init() async {
   instance
 
-    // repositories
+    // data providers
     ..registerLazySingleton<AutentithicationRepository>(
       () => AutentithicationRepositoryImpl(),
     )
-
-    // data providers
     ..registerLazySingleton<TextsRemoteDataSource>(
       () => TextsRemoteDataSourceImpl(),
     )
+    ..registerLazySingleton<TextsLocalDataSource>(
+      () => TextsLocalDataSouceImpl(),
+    )
+
+    // repositories
     ..registerLazySingleton<TextsRepository>(
       () => TextsRepositoryImpl(
         textsRemoteDataSource: instance(),
+        textsLocalDataSource: instance(),
       ),
     );
 }

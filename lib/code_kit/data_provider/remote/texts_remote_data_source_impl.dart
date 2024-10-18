@@ -8,8 +8,7 @@ class TextsRemoteDataSourceImpl implements TextsRemoteDataSource {
 
   @override
   Future<List<TextDTO>> getAllTexts({required String userId}) async {
-    final data = await supabase.from('texts').select();
-    log(data.length.toString());
+    final data = await supabase.from(StringConsts.textsDB).select();
     return data.map((e) => TextDTO.fromJson(e)).toList();
   }
 
