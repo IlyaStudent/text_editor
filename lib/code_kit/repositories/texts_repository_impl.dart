@@ -11,12 +11,13 @@ class TextsRepositoryImpl implements TextsRepository {
 
   @override
   Future<List<TextEntity>> getAllRemoteTexts() async {
-    final texts = await textsRemoteDataSource.getAllTexts(
+    final List<TextEntity> texts = await textsRemoteDataSource.getAllTexts(
       userId: supabase.auth.currentUser!.id,
     );
     await textsLocalDataSource.deleateAllTexts();
     await textsLocalDataSource.writeAllTexts(texts: texts);
-    return await textsLocalDataSource.getAllTexts();
+    final result = await textsLocalDataSource.getAllTexts();
+    return result;
   }
 
   @override
@@ -30,4 +31,7 @@ class TextsRepositoryImpl implements TextsRepository {
   @override
   Future<void> updateText({required TextDTO textDTO}) =>
       textsRemoteDataSource.updateText(textDTO: textDTO);
+
+  @override
+  Future<void> deleteAllTexts() => textsLocalDataSource.deleateAllTexts();
 }

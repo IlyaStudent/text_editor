@@ -42,5 +42,9 @@ class AppRouter extends _$AppRouter {
           page: RegistrationRoute.page,
           path: StringConsts.registrationRoute,
         ),
+        AutoRoute(
+          page: TextRoute.page,
+          path: StringConsts.textPath,
+        ),
       ];
 }

@@ -8,4 +8,6 @@ abstract class TextsRepository {
   Future<void> updateText({required TextDTO textDTO});
 
   Future<void> createText({required TextDTO textDTO});
+
+  Future<void> deleteAllTexts();
 }

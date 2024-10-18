@@ -1,4 +1,4 @@
-part of '../code_kit.dart';
+part of '../../code_kit.dart';
 
 class TextsRemoteDataSourceImpl implements TextsRemoteDataSource {
   @override

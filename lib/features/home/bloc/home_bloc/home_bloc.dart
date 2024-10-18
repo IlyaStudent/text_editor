@@ -13,7 +13,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(
       const HomeState.loading(),
     );
-    List<TextEntity> texts = await textsRepository.getAllRemoteTexts();
+    List<TextEntity> texts = event.localDownload
+        ? await textsRepository.getAllLocalTexts()
+        : await textsRepository.getAllRemoteTexts();
     emit(
       HomeState.loaded(
         texts: texts,

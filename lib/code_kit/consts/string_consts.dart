@@ -5,6 +5,7 @@ class StringConsts {
 
   // reg exp
   static const String regEmailValidate = r"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$";
+  static const String dateTimeParse = "d.M.y";
 
   // env strings
   static const String envFileName = ".env";
@@ -14,6 +15,9 @@ class StringConsts {
   // ui strings
   static const String appName = "TextEditor";
 
+  // hive
+  static const String textBox = "textBox";
+
   // route path
   static const String onBoardingRoute = "/";
   static const String authorizationRoute = "/auth";
@@ -21,6 +25,7 @@ class StringConsts {
   static const String navBarPath = "/navBar";
   static const String homePath = "home";
   static const String settingsPath = "settings";
+  static const String textPath = "/text";
 
   // textfield names
   static const String email = "email";

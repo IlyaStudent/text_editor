@@ -21,5 +21,6 @@
   "signOut": "Sign out",
   "settingsPage": "Settings Page",
   "home": "Home",
-  "settings": "Settings"
+  "settings": "Settings",
+  "noTextsYet": "No texts yet"
 }

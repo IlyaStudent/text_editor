@@ -12,6 +12,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: StringConsts.envFileName);
   Hive.initFlutter();
+  Hive.registerAdapter(
+    TextEntityAdapter(),
+  );
   await Supabase.initialize(
     url: dotenv.env[StringConsts.envUrlKey] ?? StringConsts.emptyString,
     anonKey: dotenv.env[StringConsts.envAnonKey] ?? StringConsts.emptyString,

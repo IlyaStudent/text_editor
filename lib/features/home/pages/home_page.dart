@@ -29,12 +29,22 @@ class HomePage extends StatelessWidget implements AutoRouteWrapper {
       },
       loaded: (_Loaded state) {
         return Scaffold(
-          body: Center(
-            child: Text(state.texts.length.toString()),
+          floatingActionButton: CustomAnimatedFabButton(
+            downloadAction: () => context.homeBloc.add(
+              const HomeEvent.loadTexts(localDownload: false),
+            ),
+            addAction: () {},
           ),
+          body: state.texts.isEmpty
+              ? Center(
+                  child: Text(
+                    context.localization.noTextsYet,
+                    style: context.textTheme.bodyLarge,
+                  ),
+                )
+              : TextsWidget(texts: state.texts),
         );
       },
     );
-    // return Scaffold();
   }
 }

@@ -7,7 +7,9 @@ class SettingsPage extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
-      create: (context) => SettingsBloc(),
+      create: (context) => SettingsBloc(
+        textsRepository: instance(),
+      ),
       child: this,
     );
   }

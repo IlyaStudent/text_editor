@@ -1,7 +1,7 @@
 part of '../../code_kit.dart';
 
 class TextsLocalDataSouceImpl implements TextsLocalDataSource {
-  final String _boxName = "textBox";
+  final String _boxName = StringConsts.textBox;
   Future<Box<TextEntity>> get _box async =>
       await Hive.openBox<TextEntity>(_boxName);
 
@@ -14,6 +14,8 @@ class TextsLocalDataSouceImpl implements TextsLocalDataSource {
   @override
   Future<List<TextEntity>> getAllTexts() async {
     final box = await _box;
+    final result = box.values.toList();
+    log(result.length.toString());
     return box.values.toList();
   }
 

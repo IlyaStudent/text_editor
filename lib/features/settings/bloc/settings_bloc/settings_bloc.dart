@@ -1,7 +1,11 @@
 part of '../../settings.dart';
 
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
-  SettingsBloc() : super(const _Initial()) {
+  final TextsRepository textsRepository;
+  SettingsBloc({required this.textsRepository})
+      : super(
+          const _Initial(),
+        ) {
     on<_SignOutEvent>(_onSignOutEvent);
   }
   Future<void> _onSignOutEvent(
@@ -11,7 +15,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     emit(
       const SettingsState.loading(),
     );
-    supabase.auth.signOut();
+    await supabase.auth.signOut();
+    await textsRepository.deleteAllTexts();
     emit(
       const SettingsState.signedOut(),
     );
