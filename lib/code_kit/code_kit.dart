@@ -1,5 +1,7 @@
 library code_kit;
 
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -18,17 +20,25 @@ part 'extensions/content_extension.dart';
 // di
 part 'dependency_injection/dependency_injection.dart';
 
-// entities
+// dto
 part 'models/dto/authorization_dto.dart';
 part 'models/dto/registration_dto.dart';
+part 'models/dto/text_dto.dart';
 
-// dto
+// entity
 part 'models/authorization_enity.dart';
 part 'models/registration_entity.dart';
+part 'models/text_entity.dart';
+
+// data provider
+part 'data_provider/texts_remote_data_source.dart';
+part 'data_provider/texts_remote_data_source_impl.dart';
 
 // repositories
 part 'repositories/autentithication_repository.dart';
 part 'repositories/autentithication_repository_impl.dart';
+part 'repositories/texts_repository.dart';
+part 'repositories/texts_repository_impl.dart';
 
 // helpers
 part 'helpers/validation_helpers/registration_validator.dart';

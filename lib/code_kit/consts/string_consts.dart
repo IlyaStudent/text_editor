@@ -28,4 +28,12 @@ class StringConsts {
   static const String plainPassword = "plainPassword";
   static const String confirmPassword = "confirmPassword";
   static const String isValid = "isValid";
+
+  // supabase
+  static const String textsDB = "texts";
+  static const String idField = "id";
+  static const String createdAtField = "createdAt";
+  static const String userIdField = "userId";
+  static const String textTitleField = "textTitle";
+  static const String textField = "text";
 }

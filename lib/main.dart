@@ -10,10 +10,12 @@ part 'root/text_editor_app.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: StringConsts.envFileName);
+
   await Supabase.initialize(
     url: dotenv.env[StringConsts.envUrlKey] ?? StringConsts.emptyString,
     anonKey: dotenv.env[StringConsts.envAnonKey] ?? StringConsts.emptyString,
   );
+  init();
   runApp(const TextEditorApp());
 }
 
