@@ -6,7 +6,8 @@ class TextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final DateTime dateCreate = DateTime.parse(textEntity.createdAt);
+    final DateTime dateCreate =
+        DateTime.parse(textEntity.createdAt ?? StringConsts.emptyString);
     return GestureDetector(
       onTap: () => context.router.push(
         TextRoute(textEntity: textEntity),

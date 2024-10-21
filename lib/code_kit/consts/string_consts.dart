@@ -26,6 +26,7 @@ class StringConsts {
   static const String homePath = "home";
   static const String settingsPath = "settings";
   static const String textPath = "/text";
+  static const String addTextPath = "/addText";
 
   // textfield names
   static const String email = "email";
@@ -41,4 +42,9 @@ class StringConsts {
   static const String userIdField = "userId";
   static const String textTitleField = "textTitle";
   static const String textField = "text";
+
+  // hero tag
+  static const String addButton = "addButton";
+  static const String downloadButton = "downloadButton";
+  static const String toggleButton = "toggleButton";
 }

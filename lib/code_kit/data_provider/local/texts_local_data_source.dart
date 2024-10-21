@@ -6,4 +6,6 @@ abstract class TextsLocalDataSource {
   Future<void> writeAllTexts({required List<TextEntity> texts});
 
   Future<void> deleateAllTexts();
+
+  Future<void> addText({required TextEntity textEntity});
 }

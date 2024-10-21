@@ -25,8 +25,11 @@ class TextsRepositoryImpl implements TextsRepository {
       textsLocalDataSource.getAllTexts();
 
   @override
-  Future<void> createText({required TextDTO textDTO}) =>
-      textsRemoteDataSource.createText(textDTO: textDTO);
+  Future<void> createText({required TextDTO textDTO}) async {
+    final TextEntity textEntity =
+        await textsRemoteDataSource.createText(textDTO: textDTO);
+    await textsLocalDataSource.addText(textEntity: textEntity);
+  }
 
   @override
   Future<void> updateText({required TextDTO textDTO}) =>

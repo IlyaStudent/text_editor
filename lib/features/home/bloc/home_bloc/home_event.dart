@@ -5,4 +5,6 @@ class HomeEvent with _$HomeEvent {
   const factory HomeEvent.loadTexts({
     @Default(true) bool localDownload,
   }) = _LoadTexts;
+  const factory HomeEvent.changeText({required TextDTO textDTO}) = _ChangeText;
+  const factory HomeEvent.addText({required TextDTO textDTO}) = _AddText;
 }

@@ -26,4 +26,10 @@ class TextsLocalDataSouceImpl implements TextsLocalDataSource {
       (e) => box.add(e),
     );
   }
+
+  @override
+  Future<void> addText({required TextEntity textEntity}) async {
+    final box = await _box;
+    box.add(textEntity);
+  }
 }

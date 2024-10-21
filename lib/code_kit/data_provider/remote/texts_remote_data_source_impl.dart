@@ -2,8 +2,12 @@ part of '../../code_kit.dart';
 
 class TextsRemoteDataSourceImpl implements TextsRemoteDataSource {
   @override
-  Future<void> createText({required TextDTO textDTO}) async {
-    await supabase.from(StringConsts.textsDB).insert({textDTO.toJson()});
+  Future<TextDTO> createText({required TextDTO textDTO}) async {
+    final data = textDTO.toJson();
+    data.remove(StringConsts.idField);
+    final newData =
+        await supabase.from(StringConsts.textsDB).insert(data).select();
+    return TextDTO.fromJson(newData.first);
   }
 
   @override
@@ -17,6 +21,6 @@ class TextsRemoteDataSourceImpl implements TextsRemoteDataSource {
     await supabase
         .from(StringConsts.textsDB)
         .update(textDTO.toJson())
-        .eq(StringConsts.idField, textDTO.id);
+        .eq(StringConsts.idField, textDTO.id ?? 0);
   }
 }

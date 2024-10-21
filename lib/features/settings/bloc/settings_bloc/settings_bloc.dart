@@ -8,6 +8,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         ) {
     on<_SignOutEvent>(_onSignOutEvent);
   }
+
   Future<void> _onSignOutEvent(
     _SignOutEvent event,
     Emitter<SettingsState> emit,

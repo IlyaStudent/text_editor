@@ -3,8 +3,12 @@ part of '../ui_kit.dart';
 class CustomAnimatedFabButton extends StatefulWidget {
   final VoidCallback downloadAction;
   final VoidCallback addAction;
-  const CustomAnimatedFabButton(
-      {super.key, required this.downloadAction, required this.addAction});
+
+  const CustomAnimatedFabButton({
+    super.key,
+    required this.downloadAction,
+    required this.addAction,
+  });
 
   @override
   State<CustomAnimatedFabButton> createState() =>
@@ -27,7 +31,7 @@ class _CustomAnimatedFabButtonState extends State<CustomAnimatedFabButton>
     );
 
     _animation1 = Tween<Offset>(
-      begin: const Offset(0.0, 1.0),
+      begin: const Offset(0.0, 2.4),
       end: const Offset(0, 0.0),
     ).animate(
       CurvedAnimation(
@@ -35,8 +39,9 @@ class _CustomAnimatedFabButtonState extends State<CustomAnimatedFabButton>
         curve: Curves.easeInOut,
       ),
     );
+
     _animation2 = Tween<Offset>(
-      begin: const Offset(0.0, 2.0),
+      begin: const Offset(0.0, 1.4),
       end: const Offset(0, 0.0),
     ).animate(
       CurvedAnimation(
@@ -68,29 +73,37 @@ class _CustomAnimatedFabButtonState extends State<CustomAnimatedFabButton>
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (_isExpanded)
+        if (Platform.isWindows)
           SlideTransition(
             position: _animation1,
             child: FloatingActionButton(
+              heroTag: StringConsts.addButton,
               onPressed: widget.addAction,
               mini: true,
               child: const Icon(Icons.add),
             ),
           ),
-        if (_isExpanded)
-          SlideTransition(
-            position: _animation2,
-            child: FloatingActionButton(
-              onPressed: widget.downloadAction,
-              mini: true,
-              child: const Icon(Icons.download_rounded),
-            ),
+        const SizedBox(height: 8), // Расстояние между кнопками
+        SlideTransition(
+          position: _animation2,
+          child: FloatingActionButton(
+            heroTag: StringConsts.downloadButton,
+            onPressed: widget.downloadAction,
+            mini: true,
+            child: const Icon(Icons.download_rounded),
           ),
-        FloatingActionButton(
-          onPressed: _toggle,
-          child: AnimatedIcon(
-            icon: AnimatedIcons.menu_close,
-            progress: _controller,
+        ),
+        const SizedBox(height: 8), // Расстояние между кнопками
+        SizedBox(
+          height: 60,
+          width: 60,
+          child: FloatingActionButton(
+            heroTag: StringConsts.toggleButton,
+            onPressed: _toggle,
+            child: AnimatedIcon(
+              icon: AnimatedIcons.menu_close,
+              progress: _controller,
+            ),
           ),
         ),
       ],

@@ -46,5 +46,9 @@ class AppRouter extends _$AppRouter {
           page: TextRoute.page,
           path: StringConsts.textPath,
         ),
+        AutoRoute(
+          page: AddTextRoute.page,
+          path: StringConsts.addTextPath,
+        )
       ];
 }

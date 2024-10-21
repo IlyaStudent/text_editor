@@ -19,6 +19,7 @@ class HomePage extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget build(BuildContext context) {
     final state = context.watch<HomeBloc>().state;
+
     return state.map(
       loading: (_Loading state) {
         return const Scaffold(
@@ -33,7 +34,9 @@ class HomePage extends StatelessWidget implements AutoRouteWrapper {
             downloadAction: () => context.homeBloc.add(
               const HomeEvent.loadTexts(localDownload: false),
             ),
-            addAction: () {},
+            addAction: () => context.router.push(
+              const AddTextRoute(),
+            ),
           ),
           body: state.texts.isEmpty
               ? Center(

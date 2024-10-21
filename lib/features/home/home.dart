@@ -1,5 +1,7 @@
 library home;
 
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +13,7 @@ import 'package:text_editor/ui_kit/ui_kit.dart';
 // pages
 part 'pages/home_page.dart';
 part 'pages/text_page.dart';
+part 'pages/add_text_page.dart';
 
 // widgets
 part 'widgets/texts_widget.dart';

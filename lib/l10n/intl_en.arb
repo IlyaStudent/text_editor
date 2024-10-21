@@ -22,5 +22,10 @@
   "settingsPage": "Settings Page",
   "home": "Home",
   "settings": "Settings",
-  "noTextsYet": "No texts yet"
+  "noTextsYet": "No texts yet",
+  "addText": "Add text",
+  "title": "Title",
+  "enterATitle": "Enter a title",
+  "enterAText": "Enter a text",
+  "text": "text"
 }
