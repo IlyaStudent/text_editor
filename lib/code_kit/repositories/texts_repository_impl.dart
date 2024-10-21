@@ -32,8 +32,10 @@ class TextsRepositoryImpl implements TextsRepository {
   }
 
   @override
-  Future<void> updateText({required TextDTO textDTO}) =>
-      textsRemoteDataSource.updateText(textDTO: textDTO);
+  Future<void> updateText({required TextDTO textDTO}) async {
+    await textsRemoteDataSource.updateText(textDTO: textDTO);
+    await textsLocalDataSource.updateText(textEntity: textDTO);
+  }
 
   @override
   Future<void> deleteAllTexts() => textsLocalDataSource.deleateAllTexts();

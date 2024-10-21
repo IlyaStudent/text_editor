@@ -42,9 +42,10 @@ class RegistrationFormWidget extends StatelessWidget {
         ),
         CustomTextField(
           labelText: context.localization.email,
-          errorText: registrationErrorEntity.email
-              ? null
-              : context.localization.incorrectEmail,
+          errorText: (registrationErrorEntity.email != null &&
+                  !registrationErrorEntity.email!)
+              ? context.localization.incorrectEmail
+              : null,
           onChanged: (changedFieldText) => context.registrationBloc.add(
             RegistrationEvent.changeData(
               changedFieldName: StringConsts.email,
@@ -56,9 +57,10 @@ class RegistrationFormWidget extends StatelessWidget {
         ),
         CustomTextField(
           labelText: context.localization.password,
-          errorText: registrationErrorEntity.plainPassword
-              ? null
-              : context.localization.passwordMustBe625Symbols,
+          errorText: (registrationErrorEntity.plainPassword != null &&
+                  !registrationErrorEntity.plainPassword!)
+              ? context.localization.passwordMustBe625Symbols
+              : null,
           onChanged: (changedFieldText) => context.registrationBloc.add(
             RegistrationEvent.changeData(
               changedFieldName: StringConsts.plainPassword,
@@ -72,9 +74,10 @@ class RegistrationFormWidget extends StatelessWidget {
         ),
         CustomTextField(
           labelText: context.localization.confirmPassword,
-          errorText: registrationErrorEntity.confirmPassword
-              ? null
-              : context.localization.passwordsMustBeTheSame,
+          errorText: (registrationErrorEntity.confirmPassword != null &&
+                  !registrationErrorEntity.confirmPassword!)
+              ? context.localization.passwordsMustBeTheSame
+              : null,
           onChanged: (changedFieldText) => context.registrationBloc.add(
             RegistrationEvent.changeData(
               changedFieldName: StringConsts.confirmPassword,

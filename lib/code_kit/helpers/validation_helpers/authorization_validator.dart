@@ -30,8 +30,8 @@ class AuthorizationValidator implements Validator {
             ? ValidateFunctions._checkEmail(changedFieldText)
             : ValidateFunctions._checkPlainPassword(changedFieldText);
     authorizationErrorData[StringConsts.isValid] =
-        authorizationErrorData[StringConsts.email] &&
-            authorizationErrorData[StringConsts.password];
+        (authorizationErrorData[StringConsts.email] ?? false) &&
+            (authorizationErrorData[StringConsts.password] ?? false);
     authorizationErrorDTO =
         AuthorizationErrorDTO.fromJson(authorizationErrorData);
   }

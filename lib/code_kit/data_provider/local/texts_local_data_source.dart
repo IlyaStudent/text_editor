@@ -8,4 +8,6 @@ abstract class TextsLocalDataSource {
   Future<void> deleateAllTexts();
 
   Future<void> addText({required TextEntity textEntity});
+
+  Future<void> updateText({required TextEntity textEntity});
 }

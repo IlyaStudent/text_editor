@@ -42,9 +42,10 @@ class AuthorizationFormWidget extends StatelessWidget {
                 changedFieldText: changedFieldText),
           ),
           labelText: context.localization.email,
-          errorText: authorizationErrorEntity.email
-              ? null
-              : context.localization.passwordMustBe625Symbols,
+          errorText: (authorizationErrorEntity.email != null &&
+                  !authorizationErrorEntity.email!)
+              ? context.localization.passwordMustBe625Symbols
+              : null,
           prefixIcon: Icons.email,
           hintText: context.localization.enterYoutEmail,
         ),
@@ -54,9 +55,10 @@ class AuthorizationFormWidget extends StatelessWidget {
                 changedFieldName: StringConsts.password,
                 changedFieldText: changedFieldText),
           ),
-          errorText: authorizationErrorEntity.password
-              ? null
-              : context.localization.passwordMustBe625Symbols,
+          errorText: (authorizationErrorEntity.password != null &&
+                  !authorizationErrorEntity.password!)
+              ? context.localization.passwordMustBe625Symbols
+              : null,
           labelText: context.localization.password,
           prefixIcon: Icons.lock,
           hideable: true,

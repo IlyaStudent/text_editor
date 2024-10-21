@@ -2,8 +2,8 @@ part of '../authorization.dart';
 
 class AuthorizationErrorEntity {
   final bool isValid;
-  final bool email;
-  final bool password;
+  final bool? email;
+  final bool? password;
   final bool signInError;
 
   const AuthorizationErrorEntity({

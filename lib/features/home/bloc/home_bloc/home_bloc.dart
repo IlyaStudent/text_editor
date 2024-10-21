@@ -29,7 +29,16 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     _ChangeText event,
     Emitter<HomeState> emit,
   ) async {
+    emit(
+      const HomeState.loading(),
+    );
     await textsRepository.updateText(textDTO: event.textDTO);
+    List<TextEntity> texts = await textsRepository.getAllLocalTexts();
+    emit(
+      HomeState.loaded(
+        texts: texts,
+      ),
+    );
   }
 
   Future<void> _onAddText(

@@ -22,5 +22,3 @@ void main() async {
   init();
   runApp(const TextEditorApp());
 }
-
-final supabase = Supabase.instance.client;

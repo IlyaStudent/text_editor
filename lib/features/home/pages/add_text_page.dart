@@ -54,24 +54,25 @@ class _AddTextPageState extends State<AddTextPage> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-            padding: const EdgeInsets.all(32),
-            child: Column(
-              children: [
-                CustomTextField(
-                  controller: titleController,
-                  hintText: context.localization.enterATitle,
-                  labelText: context.localization.title,
+          padding: const EdgeInsets.all(32),
+          child: Column(
+            children: [
+              CustomTextField(
+                controller: titleController,
+                hintText: context.localization.enterATitle,
+                labelText: context.localization.title,
+              ),
+              TextField(
+                controller: textController,
+                maxLines: null,
+                decoration: InputDecoration(
+                  hintText: context.localization.enterAText,
+                  labelText: context.localization.text,
                 ),
-                TextField(
-                  controller: textController,
-                  maxLines: null,
-                  decoration: InputDecoration(
-                    hintText: context.localization.enterAText,
-                    labelText: context.localization.text,
-                  ),
-                )
-              ],
-            )),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

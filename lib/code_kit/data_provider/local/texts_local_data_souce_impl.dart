@@ -14,22 +14,26 @@ class TextsLocalDataSouceImpl implements TextsLocalDataSource {
   @override
   Future<List<TextEntity>> getAllTexts() async {
     final box = await _box;
-    final result = box.values.toList();
-    log(result.length.toString());
     return box.values.toList();
   }
 
   @override
   Future<void> writeAllTexts({required List<TextEntity> texts}) async {
     final box = await _box;
-    texts.forEach(
-      (e) => box.add(e),
-    );
+    await box.putAll(texts.asMap().map(
+          (key, value) => MapEntry(value.id, value),
+        ));
   }
 
   @override
   Future<void> addText({required TextEntity textEntity}) async {
     final box = await _box;
-    box.add(textEntity);
+    await box.add(textEntity);
+  }
+
+  @override
+  Future<void> updateText({required TextEntity textEntity}) async {
+    final box = await _box;
+    box.put(textEntity.id, textEntity);
   }
 }

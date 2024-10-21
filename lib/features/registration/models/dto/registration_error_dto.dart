@@ -7,9 +7,9 @@ class RegistrationErrorDTO extends RegistrationErrorEntity
     @Default(false) bool isValid,
     @Default(false) bool userAlreadyRegisteredError,
     @Default(false) bool invalidDataError,
-    @Default(true) bool email,
-    @Default(true) bool plainPassword,
-    @Default(true) bool confirmPassword,
+    bool? email,
+    bool? plainPassword,
+    bool? confirmPassword,
   }) = _RegistrationErrorDTO;
 
   factory RegistrationErrorDTO.fromJson(Map<String, dynamic> json) =>

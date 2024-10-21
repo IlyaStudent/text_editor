@@ -37,9 +37,9 @@ class RegistrationValidator implements Validator {
       );
     }
     registraionErrorData[StringConsts.isValid] =
-        registraionErrorData[StringConsts.plainPassword] &&
-            registraionErrorData[StringConsts.confirmPassword] &&
-            registraionErrorData[StringConsts.email];
+        (registraionErrorData[StringConsts.plainPassword] ?? false) &&
+            (registraionErrorData[StringConsts.confirmPassword] ?? false) &&
+            (registraionErrorData[StringConsts.email] ?? false);
     registrationErrorDTO = RegistrationErrorDTO.fromJson(registraionErrorData);
   }
 }
