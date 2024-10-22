@@ -38,5 +38,10 @@ class TextsRepositoryImpl implements TextsRepository {
   }
 
   @override
-  Future<void> deleteAllTexts() => textsLocalDataSource.deleateAllTexts();
+  Future<void> deleteAllLocalTexts() => textsLocalDataSource.deleateAllTexts();
+
+  @override
+  Future<void> deleteAllRemoteTexts() => textsRemoteDataSource.deleteTexts(
+        userId: supabase.auth.currentUser!.id,
+      );
 }

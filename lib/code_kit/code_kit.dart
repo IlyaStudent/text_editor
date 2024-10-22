@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:text_editor/features/authorization/authorization.dart';
 import 'package:text_editor/features/registration/registration.dart';
@@ -33,18 +34,19 @@ part 'models/text_entity.dart';
 part 'data_provider/remote/texts_remote_data_source.dart';
 part 'data_provider/remote/texts_remote_data_source_impl.dart';
 
-// data provider - local tables
-// part 'data_provider/local/tables/text_local_model.dart';
-
 // data provider - local data sources
 part 'data_provider/local/texts_local_data_source.dart';
 part 'data_provider/local/texts_local_data_souce_impl.dart';
+part 'data_provider/local/settings_local_data_source.dart';
+part 'data_provider/local/settings_local_data_source_impl.dart';
 
 // repositories
 part 'repositories/autentithication_repository.dart';
 part 'repositories/autentithication_repository_impl.dart';
 part 'repositories/texts_repository.dart';
 part 'repositories/texts_repository_impl.dart';
+part 'repositories/settings_repository.dart';
+part 'repositories/settings_repository_impl.dart';
 
 // helpers
 part 'helpers/validation_helpers/registration_validator.dart';

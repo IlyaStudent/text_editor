@@ -9,5 +9,7 @@ abstract class TextsRepository {
 
   Future<void> createText({required TextDTO textDTO});
 
-  Future<void> deleteAllTexts();
+  Future<void> deleteAllLocalTexts();
+
+  Future<void> deleteAllRemoteTexts();
 }

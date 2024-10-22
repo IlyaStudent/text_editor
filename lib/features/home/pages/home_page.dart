@@ -9,6 +9,7 @@ class HomePage extends StatelessWidget implements AutoRouteWrapper {
     return BlocProvider(
       create: (context) => HomeBloc(
         textsRepository: instance(),
+        settingsRepository: instance(),
       )..add(
           const HomeEvent.loadTexts(),
         ),

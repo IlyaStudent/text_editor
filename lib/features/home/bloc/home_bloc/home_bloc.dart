@@ -2,7 +2,11 @@ part of '../../home.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final TextsRepository textsRepository;
-  HomeBloc({required this.textsRepository}) : super(const _Loading()) {
+  final SettingsRepository settingsRepository;
+  HomeBloc({
+    required this.textsRepository,
+    required this.settingsRepository,
+  }) : super(const _Loading()) {
     on<_LoadTexts>(_onLoadTexts);
     on<_ChangeText>(_onChangeText);
     on<_AddText>(_onAddText);
@@ -15,9 +19,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(
       const HomeState.loading(),
     );
-    List<TextEntity> texts = event.localDownload
-        ? await textsRepository.getAllLocalTexts()
-        : await textsRepository.getAllRemoteTexts();
+    final bool onlineMode =
+        await settingsRepository.getBoolValue(key: StringConsts.onlineMode);
+    List<TextEntity> texts = (!event.localDownload && onlineMode)
+        ? await textsRepository.getAllRemoteTexts()
+        : await textsRepository.getAllLocalTexts();
     emit(
       HomeState.loaded(
         texts: texts,

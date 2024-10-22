@@ -26,4 +26,12 @@ class TextsRemoteDataSourceImpl implements TextsRemoteDataSource {
         .update(textDTO.toJson())
         .eq(StringConsts.idField, textDTO.id ?? 0);
   }
+
+  @override
+  Future<void> deleteTexts({required String userId}) async {
+    await supabase
+        .from(StringConsts.textsDB)
+        .delete()
+        .eq(StringConsts.userIdField, userId);
+  }
 }

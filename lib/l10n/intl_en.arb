@@ -27,5 +27,8 @@
   "title": "Title",
   "enterATitle": "Enter a title",
   "enterAText": "Enter a text",
-  "text": "text"
+  "text": "text",
+  "onlineMode": "Online mode",
+  "encryptionMode": "Encryption mode",
+  "deleteAllData": "Delete all data"
 }

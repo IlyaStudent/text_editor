@@ -47,4 +47,8 @@ class StringConsts {
   static const String addButton = "addButton";
   static const String downloadButton = "downloadButton";
   static const String toggleButton = "toggleButton";
+
+  // shared prefernces
+  static const String onlineMode = "onlineMode";
+  static const String encryptionMode = "encryptionMode";
 }

@@ -16,6 +16,7 @@ class TextPage extends StatefulWidget implements AutoRouteWrapper {
     return BlocProvider(
       create: (context) => HomeBloc(
         textsRepository: instance(),
+        settingsRepository: instance(),
       ),
       child: this,
     );

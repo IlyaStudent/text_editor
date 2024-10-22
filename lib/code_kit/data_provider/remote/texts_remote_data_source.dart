@@ -6,4 +6,6 @@ abstract class TextsRemoteDataSource {
   Future<void> updateText({required TextDTO textDTO});
 
   Future<TextDTO> createText({required TextDTO textDTO});
+
+  Future<void> deleteTexts({required String userId});
 }

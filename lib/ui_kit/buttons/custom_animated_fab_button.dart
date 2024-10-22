@@ -83,7 +83,7 @@ class _CustomAnimatedFabButtonState extends State<CustomAnimatedFabButton>
               child: const Icon(Icons.add),
             ),
           ),
-        const SizedBox(height: 8), // Расстояние между кнопками
+        const SizedBox(height: 8),
         SlideTransition(
           position: _animation2,
           child: FloatingActionButton(
@@ -93,7 +93,7 @@ class _CustomAnimatedFabButtonState extends State<CustomAnimatedFabButton>
             child: const Icon(Icons.download_rounded),
           ),
         ),
-        const SizedBox(height: 8), // Расстояние между кнопками
+        const SizedBox(height: 8),
         SizedBox(
           height: 60,
           width: 60,
