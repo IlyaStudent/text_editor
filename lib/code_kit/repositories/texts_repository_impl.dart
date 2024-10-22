@@ -25,7 +25,7 @@ class TextsRepositoryImpl implements TextsRepository {
       textsLocalDataSource.getAllTexts();
 
   @override
-  Future<void> createText({required TextDTO textDTO}) async {
+  Future<void> createLocalAndRemoteText({required TextDTO textDTO}) async {
     final TextEntity textEntity =
         await textsRemoteDataSource.createText(textDTO: textDTO);
     await textsLocalDataSource.addText(textEntity: textEntity);
@@ -44,4 +44,8 @@ class TextsRepositoryImpl implements TextsRepository {
   Future<void> deleteAllRemoteTexts() => textsRemoteDataSource.deleteTexts(
         userId: supabase.auth.currentUser!.id,
       );
+
+  @override
+  Future<void> createLocalText({required TextEntity textEntity}) =>
+      textsLocalDataSource.addText(textEntity: textEntity);
 }

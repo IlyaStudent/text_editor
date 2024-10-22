@@ -39,7 +39,7 @@ class _TextPageState extends State<TextPage> {
   Widget build(BuildContext context) {
     final state = context.watch<HomeBloc>().state;
     state.when(
-      loaded: (texts) => context.router.pushAll(
+      loaded: (_, __, ___) => context.router.pushAll(
         [const NavBarRoute()],
       ),
       loading: () => null,

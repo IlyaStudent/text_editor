@@ -13,13 +13,32 @@ class TextWidget extends StatelessWidget {
         TextRoute(textEntity: textEntity),
       ),
       child: ListTile(
-        trailing: Text(
-          "${dateCreate.day}-${dateCreate.month}-${dateCreate.year}",
-        ),
-        title: Text("#${textEntity.id} ${textEntity.textTitle}"),
-        subtitle: Text(
-            "${(textEntity.text ?? StringConsts.emptyString).length < 25 ? textEntity.text : '${textEntity.text?.substring(0, 30)}...'}"),
-      ),
+          isThreeLine: true,
+          trailing: IconButton(
+            onPressed: () => context.homeBloc.add(
+              HomeEvent.showQRCode(
+                textEntity: textEntity,
+              ),
+            ),
+            icon: const Icon(
+              Icons.qr_code_rounded,
+            ),
+          ),
+          title: Text("# ${textEntity.textTitle}"),
+          subtitle: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "${dateCreate.day}-${dateCreate.month}-${dateCreate.year}",
+                style: context.textTheme.labelMedium,
+              ),
+              Text(
+                style: context.textTheme.bodySmall,
+                "${(textEntity.text ?? StringConsts.emptyString).length < 25 ? textEntity.text : '${textEntity.text?.substring(0, 30)}...'}",
+              ),
+            ],
+          )),
     );
   }
 }

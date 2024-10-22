@@ -27,7 +27,7 @@ class _AddTextPageState extends State<AddTextPage> {
   Widget build(BuildContext context) {
     final state = context.watch<HomeBloc>().state;
     state.when(
-      loaded: (texts) => context.router.pushAll(
+      loaded: (List<TextEntity> texts, _, __) => context.router.pushAll(
         [const NavBarRoute()],
       ),
       loading: () => null,

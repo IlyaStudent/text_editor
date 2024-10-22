@@ -7,7 +7,9 @@ abstract class TextsRepository {
 
   Future<void> updateText({required TextDTO textDTO});
 
-  Future<void> createText({required TextDTO textDTO});
+  Future<void> createLocalAndRemoteText({required TextDTO textDTO});
+
+  Future<void> createLocalText({required TextEntity textEntity});
 
   Future<void> deleteAllLocalTexts();
 
