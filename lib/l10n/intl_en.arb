@@ -32,5 +32,6 @@
   "encryptionMode": "Encryption mode",
   "deleteAllData": "Delete all data",
   "close": "Close",
-  "qrScanner": "QR scanner"
+  "qrScanner": "QR scanner",
+  "autentithicateToSeeYourNotes": "Autentithicate to see your notes"
 }
