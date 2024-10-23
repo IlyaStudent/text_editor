@@ -38,11 +38,11 @@ class HomePage extends StatelessWidget implements AutoRouteWrapper {
                 context: context,
                 builder: (context) => TextQRCode(
                   qrCodeInfo: qrCodeInfo,
-                  closeAction: () =>
-                      context.homeBloc.add(const HomeEvent.closeQRCode()),
                 ),
               ).then((value) {
-                context.homeBloc.add(const HomeEvent.closeQRCode());
+                context.homeBloc.add(
+                  const HomeEvent.closeQRCode(),
+                );
               });
             },
           );
@@ -61,6 +61,9 @@ class HomePage extends StatelessWidget implements AutoRouteWrapper {
               ),
               addAction: () => context.router.push(
                 const AddTextRoute(),
+              ),
+              scanAction: () => context.router.push(
+                const QRScannerRoute(),
               ),
             ),
             body: texts.isEmpty

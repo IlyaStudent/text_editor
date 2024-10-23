@@ -4,6 +4,7 @@ import 'package:text_editor/code_kit/code_kit.dart';
 import 'package:text_editor/features/authorization/authorization.dart';
 import 'package:text_editor/features/home/home.dart';
 import 'package:text_editor/features/on_boarding/on_boarding.dart';
+import 'package:text_editor/features/qr_scanner/qr_scanner.dart';
 import 'package:text_editor/features/registration/registration.dart';
 import 'package:text_editor/features/settings/settings.dart';
 
@@ -49,6 +50,10 @@ class AppRouter extends _$AppRouter {
         AutoRoute(
           page: AddTextRoute.page,
           path: StringConsts.addTextPath,
+        ),
+        AutoRoute(
+          page: QRScannerRoute.page,
+          path: StringConsts.qrScannerPath,
         )
       ];
 }

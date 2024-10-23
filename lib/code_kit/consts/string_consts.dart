@@ -27,6 +27,7 @@ class StringConsts {
   static const String settingsPath = "settings";
   static const String textPath = "/text";
   static const String addTextPath = "/addText";
+  static const String qrScannerPath = "/qrScanner";
 
   // textfield names
   static const String email = "email";
@@ -47,6 +48,7 @@ class StringConsts {
   static const String addButton = "addButton";
   static const String downloadButton = "downloadButton";
   static const String toggleButton = "toggleButton";
+  static const String scanButton = "scanButton";
 
   // shared prefernces
   static const String onlineMode = "onlineMode";

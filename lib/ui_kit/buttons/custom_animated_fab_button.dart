@@ -3,11 +3,13 @@ part of '../ui_kit.dart';
 class CustomAnimatedFabButton extends StatefulWidget {
   final VoidCallback downloadAction;
   final VoidCallback addAction;
+  final VoidCallback scanAction;
 
   const CustomAnimatedFabButton({
     super.key,
     required this.downloadAction,
     required this.addAction,
+    required this.scanAction,
   });
 
   @override
@@ -73,16 +75,20 @@ class _CustomAnimatedFabButtonState extends State<CustomAnimatedFabButton>
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (Platform.isWindows)
-          SlideTransition(
-            position: _animation1,
-            child: FloatingActionButton(
-              heroTag: StringConsts.addButton,
-              onPressed: widget.addAction,
-              mini: true,
-              child: const Icon(Icons.add),
-            ),
+        SlideTransition(
+          position: _animation1,
+          child: FloatingActionButton(
+            heroTag: (Platform.isWindows)
+                ? StringConsts.addButton
+                : StringConsts.scanButton,
+            onPressed:
+                (Platform.isWindows) ? widget.addAction : widget.scanAction,
+            mini: true,
+            child: (Platform.isWindows)
+                ? const Icon(Icons.add)
+                : const Icon(Icons.qr_code_scanner_rounded),
           ),
+        ),
         const SizedBox(height: 8),
         SlideTransition(
           position: _animation2,

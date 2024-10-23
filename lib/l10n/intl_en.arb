@@ -31,5 +31,6 @@
   "onlineMode": "Online mode",
   "encryptionMode": "Encryption mode",
   "deleteAllData": "Delete all data",
-  "close": "Close"
+  "close": "Close",
+  "qrScanner": "QR scanner"
 }
