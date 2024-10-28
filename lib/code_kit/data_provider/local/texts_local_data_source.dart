@@ -1,9 +1,9 @@
 part of '../../code_kit.dart';
 
 abstract class TextsLocalDataSource {
-  Future<List<UnencryptedTextEntity>> getAllUnencryptedTexts();
+  Future<List<UnencryptedTextDTO>> getAllUnencryptedTexts();
 
-  Future<List<EncryptedTextEntity>> getAllEncryptedTexts();
+  Future<List<EncryptedTextDTO>> getAllEncryptedTexts();
 
   Future<void> writeUnencryptedTexts(
       {required List<UnencryptedTextEntity> texts});

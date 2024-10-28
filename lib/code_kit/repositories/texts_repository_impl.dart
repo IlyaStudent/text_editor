@@ -112,9 +112,8 @@ class TextsRepositoryImpl implements TextsRepository {
         )
         .toList();
     textsLocalDataSource.deleateAllTexts(
-      encryptionMode: !(await _encryptionMode),
+      encryptionMode: false,
     );
-    log(textsDTO.length.toString());
     textsLocalDataSource.writeEncryptedTexts(
       texts: await encryptor.encryptTextList(textsDTO),
     );
@@ -125,9 +124,8 @@ class TextsRepositoryImpl implements TextsRepository {
     final encryptedTexts = await textsLocalDataSource.getAllEncryptedTexts();
     final texts = await encryptor.decryptTextList(encryptedTexts);
     textsLocalDataSource.deleateAllTexts(
-      encryptionMode: !(await _encryptionMode),
+      encryptionMode: true,
     );
-    log(texts.length.toString());
     textsLocalDataSource.writeUnencryptedTexts(texts: texts);
   }
 }

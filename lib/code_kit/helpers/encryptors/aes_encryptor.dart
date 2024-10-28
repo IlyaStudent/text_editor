@@ -53,7 +53,7 @@ class AesEncryptor implements Encryptor {
   }
 
   @override
-  Future<UnencryptedTextEntity> decryptText(
+  Future<UnencryptedTextDTO> decryptText(
       EncryptedTextEntity encryptedTextEntity) async {
     final SecretKey secretKey = await generateKey();
 
@@ -92,7 +92,7 @@ class AesEncryptor implements Encryptor {
       );
 
   @override
-  Future<List<UnencryptedTextEntity>> decryptTextList(
+  Future<List<UnencryptedTextDTO>> decryptTextList(
           List<EncryptedTextEntity> texts) async =>
       Future.wait(
         texts

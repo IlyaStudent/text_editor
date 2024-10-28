@@ -20,9 +20,35 @@ class TextsLocalDataSouceImpl implements TextsLocalDataSource {
   }
 
   @override
-  Future<List<UnencryptedTextEntity>> getAllUnencryptedTexts() async {
+  Future<List<UnencryptedTextDTO>> getAllUnencryptedTexts() async {
     final box = await _unencryptedBox;
-    return box.values.toList();
+    return box.values
+        .toList()
+        .map(
+          (e) => UnencryptedTextDTO(
+              id: e.id,
+              createdAt: e.createdAt,
+              userId: e.userId,
+              textTitle: e.textTitle,
+              text: e.text),
+        )
+        .toList();
+  }
+
+  @override
+  Future<List<EncryptedTextDTO>> getAllEncryptedTexts() async {
+    final box = await _encryptedBox;
+    return box.values
+        .toList()
+        .map(
+          (e) => EncryptedTextDTO(
+            id: e.id,
+            nonce: e.nonce,
+            mac: e.mac,
+            cipherText: e.cipherText,
+          ),
+        )
+        .toList();
   }
 
   @override
@@ -67,12 +93,6 @@ class TextsLocalDataSouceImpl implements TextsLocalDataSource {
       {required EncryptedTextEntity encryptedTextEntity}) async {
     final box = await _encryptedBox;
     await box.add(encryptedTextEntity);
-  }
-
-  @override
-  Future<List<EncryptedTextEntity>> getAllEncryptedTexts() async {
-    final box = await _encryptedBox;
-    return box.values.toList();
   }
 
   @override

@@ -7,7 +7,7 @@ abstract class Encryptor {
     UnencryptedTextDTO unencryptedTextDTO,
   );
 
-  Future<UnencryptedTextEntity> decryptText(
+  Future<UnencryptedTextDTO> decryptText(
     EncryptedTextEntity encryptedTextEntity,
   );
 
@@ -15,7 +15,7 @@ abstract class Encryptor {
     List<UnencryptedTextDTO> texts,
   );
 
-  Future<List<UnencryptedTextEntity>> decryptTextList(
+  Future<List<UnencryptedTextDTO>> decryptTextList(
     List<EncryptedTextEntity> texts,
   );
 }
