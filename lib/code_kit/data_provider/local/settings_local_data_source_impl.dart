@@ -15,4 +15,15 @@ class SettingsLocalDataSourceImpl implements SettingsLocalDataSource {
   @override
   Future<bool?> getBoolValue({required String key}) async =>
       sharedPreferences.getBool(key);
+
+  @override
+  Future<void> changeStringValue(
+          {required String key, required String value}) async =>
+      sharedPreferences.setString(key, value);
+
+  @override
+  Future<String?> getStringValue({
+    required String key,
+  }) async =>
+      sharedPreferences.getString(key);
 }

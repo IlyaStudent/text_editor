@@ -1,7 +1,7 @@
 part of '../home.dart';
 
 class TextQRCode extends StatelessWidget {
-  final TextDTO qrCodeInfo;
+  final String qrCodeInfo;
   const TextQRCode({
     super.key,
     required this.qrCodeInfo,
@@ -24,7 +24,7 @@ class TextQRCode extends StatelessWidget {
         height: context.deviceHeight / 3,
         child: Center(
           child: QrImageView(
-            data: jsonEncode(qrCodeInfo.toJson()),
+            data: qrCodeInfo,
             gapless: true,
           ),
         ),

@@ -9,6 +9,7 @@ class AuthorizationPage extends StatelessWidget implements AutoRouteWrapper {
     return BlocProvider(
       create: (context) => AuthorizationBloc(
         autentithicationRepository: instance(),
+        profilesRepository: instance(),
       ),
       child: this,
     );

@@ -3,9 +3,11 @@ part of '../../home.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final TextsRepository textsRepository;
   final SettingsRepository settingsRepository;
+  final Encryptor encryptor;
   HomeBloc({
     required this.textsRepository,
     required this.settingsRepository,
+    required this.encryptor,
   }) : super(const _Loading()) {
     on<_LoadTexts>(_onLoadTexts);
     on<_ChangeText>(_onChangeText);
@@ -36,7 +38,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     );
     final bool onlineMode =
         await settingsRepository.getBoolValue(key: StringConsts.onlineMode);
-    List<TextEntity> texts = (!event.localDownload && onlineMode)
+    List<UnencryptedTextEntity> texts = (!event.localDownload && onlineMode)
         ? await textsRepository.getAllRemoteTexts()
         : await textsRepository.getAllLocalTexts();
     emit(
@@ -53,8 +55,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(
       const HomeState.loading(),
     );
-    await textsRepository.updateText(textDTO: event.textDTO);
-    List<TextEntity> texts = await textsRepository.getAllLocalTexts();
+    await textsRepository.updateText(
+        unencryptedTextDTO: event.unencryptedTextDTO);
+    List<UnencryptedTextEntity> texts =
+        await textsRepository.getAllLocalTexts();
     emit(
       HomeState.loaded(
         texts: texts,
@@ -72,9 +76,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     final bool onlineMode =
         await settingsRepository.getBoolValue(key: StringConsts.onlineMode);
     onlineMode
-        ? await textsRepository.createLocalAndRemoteText(textDTO: event.textDTO)
-        : await textsRepository.createLocalText(textEntity: event.textDTO);
-    List<TextEntity> texts = await textsRepository.getAllLocalTexts();
+        ? await textsRepository.createLocalAndRemoteText(
+            unencryptedTextDTO: event.unencryptedTextDTO)
+        : await textsRepository.createLocalText(
+            unencryptedTextDTO: event.unencryptedTextDTO.copyWith(
+              id: uuid.v4(),
+            ),
+          );
+    List<UnencryptedTextEntity> texts =
+        await textsRepository.getAllLocalTexts();
     emit(
       HomeState.loaded(
         texts: texts,
@@ -88,13 +98,21 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ) async {
     final currentState = state;
     if (currentState is! _Loaded) return;
-    final qrCodeInfo = TextDTO(
-      id: event.textEntity.id,
-      createdAt: event.textEntity.createdAt,
-      userId: event.textEntity.userId,
-      textTitle: event.textEntity.textTitle,
-      text: event.textEntity.text,
+    final UnencryptedTextDTO unencryptedTextDTO = UnencryptedTextDTO(
+      id: event.unencryptedTextEntity.id,
+      createdAt: event.unencryptedTextEntity.createdAt,
+      userId: event.unencryptedTextEntity.userId,
+      textTitle: event.unencryptedTextEntity.textTitle,
+      text: event.unencryptedTextEntity.text,
     );
+    String qrCodeInfo = jsonEncode(
+        await settingsRepository.getBoolValue(key: StringConsts.encryptionMode)
+            ? await encryptor.encryptText(unencryptedTextDTO)
+            : unencryptedTextDTO);
+    if (await settingsRepository.getBoolValue(
+        key: StringConsts.encryptionMode)) {
+      qrCodeInfo = qrCodeInfo;
+    }
     emit(
       HomeState.loaded(
         texts: currentState.texts,

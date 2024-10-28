@@ -7,7 +7,10 @@ class QRScannerPage extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
-      create: (context) => QrScannerCubit(),
+      create: (context) => QrScannerCubit(
+        settingsRepository: instance(),
+        encryptor: instance(),
+      ),
       child: this,
     );
   }
@@ -17,10 +20,10 @@ class QRScannerPage extends StatelessWidget implements AutoRouteWrapper {
     final state = context.watch<QrScannerCubit>().state;
     state.when(
       scanning: () {},
-      detected: (TextEntity textEntity) {
+      detected: (UnencryptedTextEntity unencryptedTextEntity) {
         context.router.push(
           TextRoute(
-            textEntity: textEntity,
+            unencryptedTextEntity: unencryptedTextEntity,
           ),
         );
       },

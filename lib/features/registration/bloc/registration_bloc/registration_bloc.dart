@@ -3,12 +3,14 @@ part of '../../registration.dart';
 class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
   RegistrationBloc({
     required this.autentithicationRepository,
+    required this.profilesRepository,
   }) : super(const _CheckingData()) {
     on<_RegisterEvent>(_onRegisterEvent);
     on<_ChangeDataEvent>(_onChangeDataEvent);
   }
 
   final AutentithicationRepository autentithicationRepository;
+  final ProfilesRepository profilesRepository;
 
   Future<void> _onRegisterEvent(
     _RegisterEvent event,
@@ -25,6 +27,10 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
         password: currentState.registrationDTO.plainPassword ??
             StringConsts.emptyString,
         email: currentState.registrationDTO.email ?? StringConsts.emptyString,
+      );
+      await profilesRepository.writeSaltAndPassword(
+        password: currentState.registrationDTO.plainPassword ??
+            StringConsts.emptyString,
       );
       emit(
         const RegistrationState.registered(),

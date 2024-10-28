@@ -16,7 +16,8 @@ class StringConsts {
   static const String appName = "TextEditor";
 
   // hive
-  static const String textBox = "textBox";
+  static const String unencryptedTextBox = "unencryptedTextBox";
+  static const String encryptedTextBox = "encryptedTextBox";
 
   // route path
   static const String onBoardingRoute = "/";
@@ -38,6 +39,7 @@ class StringConsts {
 
   // supabase
   static const String textsDB = "texts";
+  static const String profilesDB = "profiles";
   static const String idField = "id";
   static const String createdAtField = "createdAt";
   static const String userIdField = "userId";
@@ -53,4 +55,8 @@ class StringConsts {
   // shared prefernces
   static const String onlineMode = "onlineMode";
   static const String encryptionMode = "encryptionMode";
+
+  // encryption
+  static const String secretKey = "secret_key";
+  static const String salt = "salt";
 }

@@ -4,6 +4,6 @@ part of '../../qr_scanner.dart';
 class QrScannerState with _$QrScannerState {
   const factory QrScannerState.scanning() = _ScanningState;
   const factory QrScannerState.detected({
-    required TextEntity textEntity,
+    required UnencryptedTextEntity unencryptedTextEntity,
   }) = _DetectedState;
 }

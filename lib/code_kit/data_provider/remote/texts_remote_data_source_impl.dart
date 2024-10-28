@@ -2,29 +2,31 @@ part of '../../code_kit.dart';
 
 class TextsRemoteDataSourceImpl implements TextsRemoteDataSource {
   @override
-  Future<TextDTO> createText({required TextDTO textDTO}) async {
-    final data = textDTO.toJson();
+  Future<UnencryptedTextDTO> createText(
+      {required UnencryptedTextDTO unencryptedTextDTO}) async {
+    final data = unencryptedTextDTO.toJson();
     data.remove(StringConsts.idField);
     final newData =
         await supabase.from(StringConsts.textsDB).insert(data).select();
-    return TextDTO.fromJson(newData.first);
+    return UnencryptedTextDTO.fromJson(newData.first);
   }
 
   @override
-  Future<List<TextDTO>> getAllTexts({required String userId}) async {
+  Future<List<UnencryptedTextDTO>> getAllTexts({required String userId}) async {
     final data = await supabase
         .from(StringConsts.textsDB)
         .select()
         .eq(StringConsts.userIdField, userId);
-    return data.map((e) => TextDTO.fromJson(e)).toList();
+    return data.map((e) => UnencryptedTextDTO.fromJson(e)).toList();
   }
 
   @override
-  Future<void> updateText({required TextDTO textDTO}) async {
+  Future<void> updateText(
+      {required UnencryptedTextDTO unencryptedTextDTO}) async {
     await supabase
         .from(StringConsts.textsDB)
-        .update(textDTO.toJson())
-        .eq(StringConsts.idField, textDTO.id ?? 0);
+        .update(unencryptedTextDTO.toJson())
+        .eq(StringConsts.idField, unencryptedTextDTO.id ?? 0);
   }
 
   @override

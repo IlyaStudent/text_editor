@@ -1,17 +1,23 @@
 part of '../code_kit.dart';
 
 abstract class TextsRepository {
-  Future<List<TextEntity>> getAllRemoteTexts();
+  Future<List<UnencryptedTextEntity>> getAllRemoteTexts();
 
-  Future<List<TextEntity>> getAllLocalTexts();
+  Future<List<UnencryptedTextEntity>> getAllLocalTexts();
 
-  Future<void> updateText({required TextDTO textDTO});
+  Future<void> updateText({required UnencryptedTextDTO unencryptedTextDTO});
 
-  Future<void> createLocalAndRemoteText({required TextDTO textDTO});
+  Future<void> createLocalAndRemoteText(
+      {required UnencryptedTextDTO unencryptedTextDTO});
 
-  Future<void> createLocalText({required TextEntity textEntity});
+  Future<void> createLocalText(
+      {required UnencryptedTextDTO unencryptedTextDTO});
 
   Future<void> deleteAllLocalTexts();
 
   Future<void> deleteAllRemoteTexts();
+
+  Future<void> transferToEncrypted();
+
+  Future<void> transferToUnencrypted();
 }

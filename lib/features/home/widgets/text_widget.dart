@@ -1,30 +1,30 @@
 part of '../home.dart';
 
 class TextWidget extends StatelessWidget {
-  final TextEntity textEntity;
-  const TextWidget({super.key, required this.textEntity});
+  final UnencryptedTextEntity unencryptedTextEntity;
+  const TextWidget({super.key, required this.unencryptedTextEntity});
 
   @override
   Widget build(BuildContext context) {
-    final DateTime dateCreate =
-        DateTime.parse(textEntity.createdAt ?? StringConsts.emptyString);
+    final DateTime dateCreate = DateTime.parse(
+        unencryptedTextEntity.createdAt ?? StringConsts.emptyString);
     return GestureDetector(
       onTap: () => context.router.push(
-        TextRoute(textEntity: textEntity),
+        TextRoute(unencryptedTextEntity: unencryptedTextEntity),
       ),
       child: ListTile(
           isThreeLine: true,
           trailing: IconButton(
             onPressed: () => context.homeBloc.add(
               HomeEvent.showQRCode(
-                textEntity: textEntity,
+                unencryptedTextEntity: unencryptedTextEntity,
               ),
             ),
             icon: const Icon(
               Icons.qr_code_rounded,
             ),
           ),
-          title: Text("# ${textEntity.textTitle}"),
+          title: Text("# ${unencryptedTextEntity.textTitle}"),
           subtitle: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,7 +35,7 @@ class TextWidget extends StatelessWidget {
               ),
               Text(
                 style: context.textTheme.bodySmall,
-                "${(textEntity.text ?? StringConsts.emptyString).length < 25 ? textEntity.text : '${textEntity.text?.substring(0, 30)}...'}",
+                "${(unencryptedTextEntity.text ?? StringConsts.emptyString).length < 25 ? unencryptedTextEntity.text : '${unencryptedTextEntity.text?.substring(0, 30)}...'}",
               ),
             ],
           )),

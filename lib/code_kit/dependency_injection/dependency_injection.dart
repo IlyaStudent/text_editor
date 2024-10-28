@@ -2,6 +2,7 @@ part of '../code_kit.dart';
 
 final instance = GetIt.instance;
 final supabase = Supabase.instance.client;
+const uuid = Uuid();
 
 Future<void> init() async {
   final SharedPreferences sharedPreferences =
@@ -10,6 +11,9 @@ Future<void> init() async {
   instance
 
     // data providers
+    ..registerLazySingleton<ProfilesRemoteDataSource>(
+      () => ProfilesRemoteDataSourceImpl(),
+    )
     ..registerLazySingleton<TextsRemoteDataSource>(
       () => TextsRemoteDataSourceImpl(),
     )
@@ -28,8 +32,10 @@ Future<void> init() async {
     )
     ..registerLazySingleton<TextsRepository>(
       () => TextsRepositoryImpl(
+        encryptor: instance(),
         textsRemoteDataSource: instance(),
         textsLocalDataSource: instance(),
+        settingsLocalDataSource: instance(),
       ),
     )
     ..registerLazySingleton<SettingsRepository>(
@@ -37,9 +43,25 @@ Future<void> init() async {
         settingsLocalDataSource: instance(),
       ),
     )
+    ..registerLazySingleton<ProfilesRepository>(
+      () => ProfilesRepositoryImpl(
+        profilesRemoteDataSource: instance(),
+        settingsLocalDataSource: instance(),
+      ),
+    )
+
+    // encryptors
+    ..registerLazySingleton<Encryptor>(
+      () => AesEncryptor(
+        profilesRepository: instance(),
+      ),
+    )
 
     // external
-    ..registerLazySingleton(
+    ..registerLazySingleton<SharedPreferences>(
       () => sharedPreferences,
+    )
+    ..registerLazySingleton(
+      () => uuid,
     );
 }

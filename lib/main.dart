@@ -13,12 +13,15 @@ void main() async {
   await dotenv.load(fileName: StringConsts.envFileName);
   Hive.initFlutter();
   Hive.registerAdapter(
-    TextEntityAdapter(),
+    UnencryptedTextEntityAdapter(),
+  );
+  Hive.registerAdapter(
+    EncryptedTextEntityAdapter(),
   );
   await Supabase.initialize(
     url: dotenv.env[StringConsts.envUrlKey] ?? StringConsts.emptyString,
     anonKey: dotenv.env[StringConsts.envAnonKey] ?? StringConsts.emptyString,
   );
-  init();
+  await init();
   runApp(const TextEditorApp());
 }

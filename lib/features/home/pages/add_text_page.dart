@@ -13,6 +13,7 @@ class AddTextPage extends StatefulWidget implements AutoRouteWrapper {
       create: (context) => HomeBloc(
         textsRepository: instance(),
         settingsRepository: instance(),
+        encryptor: instance(),
       ),
       child: this,
     );
@@ -27,7 +28,8 @@ class _AddTextPageState extends State<AddTextPage> {
   Widget build(BuildContext context) {
     final state = context.watch<HomeBloc>().state;
     state.when(
-      loaded: (List<TextEntity> texts, _, __) => context.router.pushAll(
+      loaded: (List<UnencryptedTextEntity> texts, _, __) =>
+          context.router.pushAll(
         [const NavBarRoute()],
       ),
       loading: () => null,
@@ -41,7 +43,7 @@ class _AddTextPageState extends State<AddTextPage> {
           IconButton(
             onPressed: () => context.homeBloc.add(
               HomeEvent.addText(
-                textDTO: TextDTO(
+                unencryptedTextDTO: UnencryptedTextDTO(
                   textTitle: titleController.text,
                   text: textController.text,
                   userId: supabase.auth.currentUser?.id,

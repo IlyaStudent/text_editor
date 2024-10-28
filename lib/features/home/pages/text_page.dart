@@ -2,10 +2,10 @@ part of '../home.dart';
 
 @RoutePage()
 class TextPage extends StatefulWidget implements AutoRouteWrapper {
-  final TextEntity textEntity;
+  final UnencryptedTextEntity unencryptedTextEntity;
   const TextPage({
     super.key,
-    required this.textEntity,
+    required this.unencryptedTextEntity,
   });
 
   @override
@@ -17,6 +17,7 @@ class TextPage extends StatefulWidget implements AutoRouteWrapper {
       create: (context) => HomeBloc(
         textsRepository: instance(),
         settingsRepository: instance(),
+        encryptor: instance(),
       ),
       child: this,
     );
@@ -30,8 +31,9 @@ class _TextPageState extends State<TextPage> {
   @override
   void initState() {
     titleController.text =
-        widget.textEntity.textTitle ?? StringConsts.emptyString;
-    textController.text = widget.textEntity.text ?? StringConsts.emptyString;
+        widget.unencryptedTextEntity.textTitle ?? StringConsts.emptyString;
+    textController.text =
+        widget.unencryptedTextEntity.text ?? StringConsts.emptyString;
     super.initState();
   }
 
@@ -47,19 +49,19 @@ class _TextPageState extends State<TextPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "# ${widget.textEntity.id} ${widget.textEntity.textTitle}",
+          "# ${widget.unencryptedTextEntity.id} ${widget.unencryptedTextEntity.textTitle}",
         ),
         actions: [
           if (Platform.isWindows)
             IconButton(
               onPressed: () => context.homeBloc.add(
                 HomeEvent.changeText(
-                  textDTO: TextDTO(
-                    id: widget.textEntity.id,
+                  unencryptedTextDTO: UnencryptedTextDTO(
+                    id: widget.unencryptedTextEntity.id,
                     textTitle: titleController.text,
                     text: textController.text,
                     userId: supabase.auth.currentUser?.id,
-                    createdAt: widget.textEntity.createdAt,
+                    createdAt: widget.unencryptedTextEntity.createdAt,
                   ),
                 ),
               ),
@@ -79,7 +81,8 @@ class _TextPageState extends State<TextPage> {
                       labelText: context.localization.title,
                     )
                   : Text(
-                      widget.textEntity.textTitle ?? StringConsts.emptyString,
+                      widget.unencryptedTextEntity.textTitle ??
+                          StringConsts.emptyString,
                       style: context.textTheme.titleMedium,
                     ),
               Platform.isWindows
@@ -92,7 +95,8 @@ class _TextPageState extends State<TextPage> {
                       ),
                     )
                   : Text(
-                      widget.textEntity.text ?? StringConsts.emptyString,
+                      widget.unencryptedTextEntity.text ??
+                          StringConsts.emptyString,
                       style: context.textTheme.bodyMedium,
                     ),
             ],

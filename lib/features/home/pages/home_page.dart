@@ -10,6 +10,7 @@ class HomePage extends StatelessWidget implements AutoRouteWrapper {
       create: (context) => HomeBloc(
         textsRepository: instance(),
         settingsRepository: instance(),
+        encryptor: instance(),
       )..add(
           const HomeEvent.loadTexts(),
         ),
@@ -21,14 +22,14 @@ class HomePage extends StatelessWidget implements AutoRouteWrapper {
   Widget build(BuildContext context) {
     final state = context.watch<HomeBloc>().state;
     bool isLoading = false;
-    List<TextEntity> texts = [];
+    List<UnencryptedTextEntity> texts = [];
 
     state.when(
       loading: () => isLoading = true,
       loaded: (
-        List<TextEntity> loadedTexts,
+        List<UnencryptedTextEntity> loadedTexts,
         bool qrCodeDisplayed,
-        TextDTO? qrCodeInfo,
+        String? qrCodeInfo,
       ) {
         texts = loadedTexts;
         if (qrCodeDisplayed && qrCodeInfo != null) {

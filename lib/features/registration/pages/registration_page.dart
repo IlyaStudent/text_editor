@@ -9,6 +9,7 @@ class RegistrationPage extends StatelessWidget implements AutoRouteWrapper {
     return BlocProvider(
       create: (context) => RegistrationBloc(
         autentithicationRepository: instance(),
+        profilesRepository: instance(),
       ),
       child: this,
     );

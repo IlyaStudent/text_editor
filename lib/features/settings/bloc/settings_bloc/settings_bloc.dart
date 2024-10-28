@@ -60,6 +60,11 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       key: event.changedValue,
       value: event.value,
     );
+    if (event.changedValue == StringConsts.encryptionMode) {
+      event.value
+          ? await textsRepository.transferToEncrypted()
+          : await textsRepository.transferToUnencrypted();
+    }
     await _emitSettingsData(emit);
   }
 

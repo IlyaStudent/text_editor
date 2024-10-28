@@ -1,13 +1,26 @@
 part of '../../code_kit.dart';
 
 abstract class TextsLocalDataSource {
-  Future<List<TextEntity>> getAllTexts();
+  Future<List<UnencryptedTextEntity>> getAllUnencryptedTexts();
 
-  Future<void> writeAllTexts({required List<TextEntity> texts});
+  Future<List<EncryptedTextEntity>> getAllEncryptedTexts();
 
-  Future<void> deleateAllTexts();
+  Future<void> writeUnencryptedTexts(
+      {required List<UnencryptedTextEntity> texts});
 
-  Future<void> addText({required TextEntity textEntity});
+  Future<void> writeEncryptedTexts({required List<EncryptedTextEntity> texts});
 
-  Future<void> updateText({required TextEntity textEntity});
+  Future<void> deleateAllTexts({required bool encryptionMode});
+
+  Future<void> addUnencryptedText(
+      {required UnencryptedTextEntity unencryptedTextEntity});
+
+  Future<void> addEncryptedText(
+      {required EncryptedTextEntity encryptedTextEntity});
+
+  Future<void> updateEncryptedText(
+      {required EncryptedTextEntity encryptedTextEntity});
+
+  Future<void> updateUnencryptedText(
+      {required UnencryptedTextEntity unencryptedTextEntity});
 }

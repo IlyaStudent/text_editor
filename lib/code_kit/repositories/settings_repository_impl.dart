@@ -17,6 +17,6 @@ class SettingsRepositoryImpl implements SettingsRepository {
 
   @override
   Future<bool> getBoolValue({required String key}) async {
-    return await settingsLocalDataSource.getBoolValue(key: key) ?? true;
+    return await settingsLocalDataSource.getBoolValue(key: key) ?? false;
   }
 }

@@ -2,8 +2,10 @@ part of '../../authorization.dart';
 
 class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
   final AutentithicationRepository autentithicationRepository;
+  final ProfilesRepository profilesRepository;
   AuthorizationBloc({
     required this.autentithicationRepository,
+    required this.profilesRepository,
   }) : super(const _CheckingData()) {
     on<_AuthorizeEvent>(_onAuthorizeEvent);
     on<_ChangeDataEvent>(_onChangeDataEvent);
@@ -22,6 +24,10 @@ class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
       );
       await autentithicationRepository.signIn(
         authorizationEntity: currentState.authorizationDTO,
+      );
+      await profilesRepository.writeSaltAndPassword(
+        password:
+            currentState.authorizationDTO.password ?? StringConsts.emptyString,
       );
       emit(
         const AuthorizationState.authorized(),

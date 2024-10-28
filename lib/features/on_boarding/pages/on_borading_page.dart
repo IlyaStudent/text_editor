@@ -30,11 +30,16 @@ class _OnBoradingPageState extends State<OnBoradingPage> {
       },
       loaded: (bool isRegistered) async {
         if (isRegistered) {
-          final bool autentithicated = await _auth.authenticate(
-            localizedReason: context.localization.autentithicateToSeeYourNotes,
-            options: const AuthenticationOptions(),
-          );
-          if (autentithicated) context.router.replaceAll([const NavBarRoute()]);
+          try {
+            final bool autentithicated = await _auth.authenticate(
+              localizedReason:
+                  context.localization.autentithicateToSeeYourNotes,
+              options: const AuthenticationOptions(),
+            );
+            if (autentithicated) {
+              context.router.replaceAll([const NavBarRoute()]);
+            }
+          } catch (e) {}
         }
         loading = false;
       },
